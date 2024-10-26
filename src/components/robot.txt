@@ -1,0 +1,31 @@
+<Canvas camera={{ position: [0, 3, 8], fov: 50 }}>
+              <ambientLight />
+
+              <spotLight />
+              <pointLight position={[10, 10, 5]} />
+
+
+              <Suspense fallback={null}>
+                <Sparkles size={2} color={'lime'} />
+                <Showrobot position={props.mouseposition} />
+
+                <Land />
+              </Suspense>
+            </Canvas>
+            <Loader />
+
+
+
+
+
+            <Canvas camera={{ position: [-1,1,5], fov: 45 }} shadows={true}>
+          <color attach={'background'} args={['#555']} />
+          <fog attach={'fog'} args={['#555', 15, 25]} />
+          <group position-y={-1}>
+            <Suspense fallback={null}>
+              <Sparkles size={2} color={'lime'} />
+              <Showrobot position={props.mouseposition} />
+            </Suspense>
+          </group>
+        </Canvas>
+        <Loader />

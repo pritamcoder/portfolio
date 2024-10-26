@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nomi>div {
+    @apply border-2 border-slate-700 rounded-lg p-5 bg-slate-950
+}
+
+h1 {
+    @apply text-2xl md:text-4xl font-bold font-serif text-white
+}
+
+.nomi p {
+    @apply text-white font-bold text-lg lg:text-2xl
+}
+
+.div3>div {
+    @apply border-2 border-slate-700 rounded-lg  w-2/4 h-[140px] md:h-full  bg-slate-950
+}
+
+.lll{
+    background-color: #05071c;
+}
