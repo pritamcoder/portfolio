@@ -7,16 +7,13 @@ import Grid from '@/components/Grid'
 import Hero from '@/components/Hero'
 import Land from '@/components/Land'
 import Nav from '@/components/Nav'
-
 import Showrobot from '@/components/Showrobot'
 import Tep from '@/components/Tep'
-import { Environment, Loader, OrbitControls, Plane, Sky, Sparkles } from '@react-three/drei'
-import { Canvas } from '@react-three/fiber'
 import React, { Suspense, useState } from 'react'
 
 
 
-const page = () => {
+const Page = () => {
   const [mouseposition, setmouseposition] = useState({ x: 0, y: 0 })
   return (
     <>
@@ -35,7 +32,7 @@ const page = () => {
         </div>
       </div>
 
-      
+
       <Featurproject />
       <Grid />
       <Tep />
@@ -49,4 +46,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

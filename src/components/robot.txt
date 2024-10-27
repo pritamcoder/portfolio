@@ -29,3 +29,5 @@
           </group>
         </Canvas>
         <Loader />
+
+       go

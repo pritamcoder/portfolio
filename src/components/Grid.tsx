@@ -68,7 +68,7 @@ const Grid = (props: Props) => {
 
             <div className='nomi  md:h-[85%] max-w-7xl flex flex-col  md:grid md:grid-rows-4 md:grid-cols-3 lg:mx-auto gap-2 pb-2 px-2 lg:px0 mt-2 md:mt-0'>
                 <div>
-                    <p className=''>i'm very flexible with time zone communication</p>
+                    <p>i'm very flexible with time zone communication</p>
                 </div>
 
                 <div className='md:col-span-2 md:row-span-2'>
@@ -116,7 +116,7 @@ const Grid = (props: Props) => {
                 </div>
 
                 <div className='flex flex-col items-center justify-center'>
-                    <p className=''>do you went to start a project together?</p>
+                    <p>do you went to start a project together?</p>
                     <button className=' capitalize border border-gray-600 bg-gray-800 text-white mt-4 rounded-lg px-5 py-1 font-semibold transition-all hover:-translate-y-1' onClick={Copyemail}>{copysuccess ? '✔':<i className="bi bi-copy"></i>} copy my email address</button>
                 </div>
 
