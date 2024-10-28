@@ -26,11 +26,11 @@ const Grid = (props: Props) => {
             setcopysuccess(false)
 
         }
-      setTimeout(()=>{
-        setcopysuccess(false)
-    },3000)  
+        setTimeout(() => {
+            setcopysuccess(false)
+        }, 3000)
     }
-    
+
 
     useGSAP(() => {
         const grid = gsap.timeline({
@@ -51,9 +51,9 @@ const Grid = (props: Props) => {
             opacity: 0
         })
         grid.from('.nomi', {
-            x:40,
+            x: 40,
             opacity: 0,
-          
+
         })
     })
 
@@ -84,13 +84,13 @@ const Grid = (props: Props) => {
 
                 <div className='nomi flex border-none gap-2 [&&]:p-0 [&&]:bg-transparent'>
                     <div className='w-1/2 [&&]:p-0 h-[140px] md:h-full'>
-                        { /*<Canvas>
+                        <Canvas>
                             <ambientLight color={0x404040} intensity={100} />
-                            <OrbitControls enableZoom={false}/>
+                            <OrbitControls enableZoom={false} />
                             <Float speed={2} rotationIntensity={2} floatIntensity={2}>
                                 <Ghost />
                             </Float>
-                        </Canvas>*/}
+                        </Canvas>
                     </div>
                     <div className='w-1/2 [&&]:p-0 h-[140px] md:h-full p-2'>
                         <Image src={'/image/feature-ele2.png'} height={100} width={100} alt='responsivimage' className=' ' />
@@ -117,7 +117,7 @@ const Grid = (props: Props) => {
 
                 <div className='flex flex-col items-center justify-center'>
                     <p>do you went to start a project together?</p>
-                    <button className=' capitalize border border-gray-600 bg-gray-800 text-white mt-4 rounded-lg px-5 py-1 font-semibold transition-all hover:-translate-y-1' onClick={Copyemail}>{copysuccess ? '✔':<i className="bi bi-copy"></i>} copy my email address</button>
+                    <button className=' capitalize border border-gray-600 bg-gray-800 text-white mt-4 rounded-lg px-5 py-1 font-semibold transition-all hover:-translate-y-1' onClick={Copyemail}>{copysuccess ? '✔' : <i className="bi bi-copy"></i>} copy my email address</button>
                 </div>
 
             </div>

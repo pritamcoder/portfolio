@@ -56,9 +56,9 @@ const Contact = (props: Props) => {
                         <button className=' h-9 w-fit px-7 border border-slate-100 bg-slate-400 text-black font-bold rounded-md capitalize hover:scale-95'>send</button>
                     </form>
                 </div>
-                <div className='contactcnvs md:w-1/2 h-full border'>
+                <div className='contactcnvs md:w-1/2 h-full'>
 
-                  {/* 
+               
                    
                    <Canvas camera={{position:[0,1,10]}}>
                         <ambientLight intensity={.5} />
@@ -69,7 +69,7 @@ const Contact = (props: Props) => {
                         
                     </Canvas>
             
-       */}
+       
 
                 </div>
             </div>

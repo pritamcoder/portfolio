@@ -7,7 +7,6 @@ import Grid from '@/components/Grid'
 import Hero from '@/components/Hero'
 import Land from '@/components/Land'
 import Nav from '@/components/Nav'
-import Showrobot from '@/components/Showrobot'
 import Tep from '@/components/Tep'
 import React, { Suspense, useState } from 'react'
 

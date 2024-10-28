@@ -52,7 +52,7 @@ const Showrobot = (props: Props) => {
     <directionalLight position={[5,5,5]} intensity={2.2} castShadow shadow-mapSize-width={2048} shadow-mapSize-height={2048} shadow-camera-far={50}/>
     <directionalLight position={[3,3,5]} intensity={6} color={'#ff3b3b'}/>
     <directionalLight position={[-3,3,-5]} intensity={8} color={'#3cb1f2'}/>
-    <mesh scale={[.7,.7,.7]}>
+    <mesh scale={[.6,.6,.6]}>
       <primitive object={robot.scene} />
     </mesh>
 </>
