@@ -16,6 +16,7 @@
     "bootstrap-icons": "^1.11.3",
     "gsap": "^3.12.5",
     "next": "^14.2.6",
+    "nodemailer": "^6.9.16",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "three": "^0.168.0",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.16",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",

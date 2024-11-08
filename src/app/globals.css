@@ -7,30 +7,34 @@
     @apply m-0 p-0 capitalize box-border text-white
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    @apply bg-gray-900
+    @apply bg-gray-900 
 }
 
 body::-webkit-scrollbar {
     width: 5px;
     border-radius: 10px;
     @apply bg-slate-500/50
-
 }
 
-body::-webkit-scrollbar-thumb{
-    background:linear-gradient(white,#FF5B4E);
+body::-webkit-scrollbar-thumb {
+    background: linear-gradient(white, #FF5B4E);
     border-radius: 10px;
     height: 12px;
-    
+
 
 }
 
-li a{
-    @apply  font-semibold py-1 px-2  rounded-xl transition-all
+li a {
+    @apply font-semibold py-1 px-2 rounded-xl transition-all
 }
-li a:hover{
-@apply bg-white text-black
+
+li a:hover {
+    @apply bg-white text-black
 }
 
 h1 {
@@ -140,4 +144,3 @@ form input {
     content: "";
     @apply absolute right-0 top-2/4 -translate-y-2/4 h-[150%] w-10 bg-gradient-to-l from-[#FF5B4E] to-transparent
 }
-

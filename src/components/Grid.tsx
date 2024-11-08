@@ -58,7 +58,7 @@ const Grid = (props: Props) => {
     })
 
     return (
-        <div className='gridmaincontaner md:h-screen ' >
+        <div className='gridmaincontaner md:h-screen overflow-hidden' id='about'>
             <div className='h-[15%] flex flex-col justify-center items-center gap-3 py-5'>
                 <p className='aboutp  uppercase font-bold bg-gradient-to-tr from-[#FFFFFF] to-[#FF5B4E] text-transparent bg-clip-text '>about me</p>
                 <h1 className='abouth md:text-5xl font-extrabold'>a glimpse into my world</h1>
@@ -83,16 +83,18 @@ const Grid = (props: Props) => {
                 </div>
 
                 <div className='nomi flex border-none gap-2 [&&]:p-0 [&&]:bg-transparent'>
-                    <div className='w-1/2 [&&]:p-0 h-[140px] md:h-full'>
-                        <Canvas>
+                    <div className='w-1/2 [&&]:p-0 h-[150px] md:h-full'>
+                      
+                            <Canvas>
                             <ambientLight color={0x404040} intensity={100} />
                             <OrbitControls enableZoom={false} />
                             <Float speed={2} rotationIntensity={2} floatIntensity={2}>
                                 <Ghost />
                             </Float>
                         </Canvas>
+                        
                     </div>
-                    <div className='w-1/2 [&&]:p-0 h-[140px] md:h-full p-2'>
+                    <div className='w-1/2 [&&]:p-4 h-[150px] md:h-full'>
                         <Image src={'/image/feature-ele2.png'} height={100} width={100} alt='responsivimage' className=' ' />
                         <p className='[&&]:text-lg'>responsiv designe</p>
                     </div>
@@ -115,7 +117,7 @@ const Grid = (props: Props) => {
                     <Image src={'/svg/b4.svg'} height={100} width={250} alt='layout' className=' md:absolute bottom-0 md:right-0 z-20 object-cover object-center relative translate-y-5 mx-auto md:translate-x-0 md:translate-y-0 ' />
                 </div>
 
-                <div className='flex flex-col items-center justify-center'>
+                <div className='flex flex-col items-center justify-center copyemail'>
                     <p>do you went to start a project together?</p>
                     <button className=' capitalize border border-gray-600 bg-gray-800 text-white mt-4 rounded-lg px-5 py-1 font-semibold transition-all hover:-translate-y-1' onClick={Copyemail}>{copysuccess ? '✔' : <i className="bi bi-copy"></i>} copy my email address</button>
                 </div>

@@ -19,6 +19,7 @@ useGSAP(()=>{
         scrollTrigger: {
             trigger: '.projectpage',
             start: 'top 70%',
+            end:'bottom 15%',
         }
     })
 
@@ -49,7 +50,7 @@ useGSAP(()=>{
 
 
     return (
-        <div className='projectpage'>
+        <div className='projectpage' id='project'>
             <div className='projectcontener flex items-center flex-col py-10 gap-3'>
                 <p className='gradientforp projectp uppercase font-bold  text-transparent bg-clip-text '>real - worls results</p>
                 <h1 className='fh md:text-5xl projecth  font-extrabold'>featre projects</h1>

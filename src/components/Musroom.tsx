@@ -9,7 +9,7 @@ const Musroom = () => {
 
     //   position={[2,-1,0]} rotation={[0,Math.PI/1,0]}
     return (
-        <mesh ref={mesh} scale={[.1,.1,.1]} position={[0,-2,0]}>
+        <mesh ref={mesh} scale={[.09,.09,.09]} position={[1,-2,0]}>
             <primitive object={musroom.scene}/>
 
         </mesh>
