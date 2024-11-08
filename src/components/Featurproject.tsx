@@ -19,7 +19,6 @@ useGSAP(()=>{
         scrollTrigger: {
             trigger: '.projectpage',
             start: 'top 70%',
-            end:'bottom 15%',
         }
     })
 
