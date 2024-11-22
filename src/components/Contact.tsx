@@ -4,7 +4,7 @@ import React, { Suspense } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import dynamic from 'next/dynamic'
-import { Perf } from 'r3f-perf'
+
 
 const Musroom = dynamic(() => import('./Musroom'), { ssr: false })
 
