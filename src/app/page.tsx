@@ -1,6 +1,6 @@
 "use client"
 import Contact from '@/components/Contact'
-import Fairfly from '@/components/Fairfly'
+
 import Featurproject from '@/components/Featurproject'
 import Footer from '@/components/Footer'
 import Grid from '@/components/Grid'
