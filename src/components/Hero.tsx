@@ -1,10 +1,12 @@
 import { Loader, Sparkles } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import React, { Suspense } from 'react'
+import React, { Suspense, useRef, useState } from 'react'
 import Showrobot from './Showrobot'
 import Land from './Land'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+
+gsap.registerPlugin(useGSAP)
 
 type Props = {
   mouseposition: { x: number, y: number }
@@ -12,16 +14,25 @@ type Props = {
 
 const Hero = (props: Props) => {
 
+  const [loading, setloading] = useState(true)
+  const firstdiv = useRef<HTMLDivElement>(null)
+  const maincontainer = useRef<HTMLDivElement>(null)
+
   useGSAP(() => {
     const anime = gsap.timeline({
-     
+      delay: 1
 
+    })
+    anime.from(maincontainer.current,{
+      scale:.8,
+      opacity:0
     })
     anime.from('.navul', {
       y: -30,
       opacity: 0,
+      duration: 1
     })
-    anime.from('.fastdiv', {
+    anime.from(firstdiv.current, {
       x: -10,
       opacity: 0,
       ease: 'bounce.out',
@@ -42,12 +53,17 @@ const Hero = (props: Props) => {
     anime.from('.canvasmodel', {
       opacity: 0,
     })
+
+    anime.eventCallback('onComplete', () => {
+      setloading(false)
+    })
+
   })
 
 
   return (
-    <div className='herosection h-full w-full relative flex overflow-hidden' id='home'>
-      <div className='fastdiv w-[90%] md:w-fit text-center md:text-left absolute z-40 left-1/2  md:left-20 top-[10%] md:translate-x-0 -translate-x-1/2 bg-slate-950 rounded-2xl py-6 px-2 md:px-4 rounded-br-none border border-slate-700 shadow-lg'>
+    <div ref={maincontainer} className='herosection h-full w-full relative flex overflow-hidden' id='home'>
+      <div ref={firstdiv} className='fastdiv w-[90%] md:w-fit text-center md:text-left absolute z-40 max-md:left-1/2  md:left-20 top-[10%]  max-md:-translate-x-1/2 bg-slate-950 rounded-2xl py-3 px-2 md:px-4 md:py-6 rounded-br-none border border-slate-700 shadow-lg'>
         <h1 className='fasth1 text-3xl md:text-4xl'>hi i'm <span className='gradientforp text-transparent bg-clip-text'>pritam.</span></h1>
         <p className='text-slate-500/80 mt-2 text-sm md:text-base'>i am a freelance web devloper skilled in building <br className=' md:hidden ' /> responsive <br className=' hidden md:block' /> website javaScript,typeScript and modern frameworks like next js.</p>
         <div className=' flex justify-between mt-3'>
@@ -56,9 +72,7 @@ const Hero = (props: Props) => {
         </div>
       </div>
 
-      <div className='canvasmodel h-full w-full'>
-
-          
+      <div className='canvasmodel h-full w-full'>     
         <Canvas camera={{ position: [0, 1, 5], fov: 45 }} shadows>
           <color attach={'background'} args={['#05071c']} />
           <fog attach={'fog'} args={['#05071c', 15, 25]} />
@@ -69,8 +83,6 @@ const Hero = (props: Props) => {
             </Suspense>
           </group>
         </Canvas>
-        
-
       </div>
 
 
@@ -79,8 +91,6 @@ const Hero = (props: Props) => {
         <p className='md:text-2xl text-lg font-bold mb-2'>building exceptional user experiences.</p>
         <p className='text-slate-500/80'>i speciallze in transforming designs into functional,high-performing <br />  web applications let's discuss your next project.</p>
       </div>
-
-      <Loader />
     </div>
   )
 }

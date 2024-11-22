@@ -84,7 +84,7 @@ const Grid = (props: Props) => {
 
                 <div className='nomi flex border-none gap-2 [&&]:p-0 [&&]:bg-transparent'>
                     <div className='w-1/2 [&&]:p-0 h-[150px] md:h-full'>
-                      
+                        
                             <Canvas>
                             <ambientLight color={0x404040} intensity={100} />
                             <OrbitControls enableZoom={false} />
@@ -95,7 +95,7 @@ const Grid = (props: Props) => {
                         
                     </div>
                     <div className='w-1/2 [&&]:p-4 h-[150px] md:h-full'>
-                        <Image src={'/image/feature-ele2.png'} height={100} width={100} alt='responsivimage' className=' ' />
+                        <Image src={'/image/feature-ele2.png'} height={100} width={100} alt='responsivimage' className='h-auto w-auto ' />
                         <p className='[&&]:text-lg'>responsiv designe</p>
                     </div>
                 </div>
@@ -114,7 +114,7 @@ const Grid = (props: Props) => {
 
                 <div style={{ backgroundImage: 'url("/svg/grid.svg")' }} className='relative'>
                     <p className='lg:mt-5'>tech enthusiast with a passion  for development.</p>
-                    <Image src={'/svg/b4.svg'} height={100} width={250} alt='layout' className=' md:absolute bottom-0 md:right-0 z-20 object-cover object-center relative translate-y-5 mx-auto md:translate-x-0 md:translate-y-0 ' />
+                    <Image src={'/svg/b4.svg'} height={100} width={250} alt='layout' className=' w-auto h-auto md:absolute bottom-0 md:right-0 z-20 object-cover object-center relative translate-y-5 mx-auto md:translate-x-0 md:translate-y-0 ' />
                 </div>
 
                 <div className='flex flex-col items-center justify-center copyemail'>

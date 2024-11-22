@@ -101,7 +101,7 @@ h1 {
 }
 
 form input {
-    @apply h-9 w-80 rounded-md px-2 bg-slate-900
+    @apply h-9 w-[100%] rounded-md px-2 bg-slate-900
 }
 
 .backgrountgradient {

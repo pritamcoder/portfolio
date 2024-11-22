@@ -68,7 +68,7 @@ useGSAP(()=>{
                                     {data.icons.length > 1 ? (
                                         data.icons.map((e, i) => (
                                             <div key={i}>
-                                                <Image src={e} alt={e} height={25} width={25} className='' />
+                                                <Image src={e} alt={e} height={25} width={25} className='w-auto h-auto' />
 
                                             </div>
                                         ))
@@ -89,7 +89,7 @@ useGSAP(()=>{
                                 alt="SaaS Landing Page Mockup"
                                 width={1000}
                                 height={600}
-                                className="relative rounded-lg shadow-lg"
+                                className="relative rounded-lg shadow-lg h-auto w-auto"
                             />
 
                         </div>

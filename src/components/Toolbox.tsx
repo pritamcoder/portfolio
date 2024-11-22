@@ -13,9 +13,11 @@ const Toolbox = (props: Props) => {
                     <div key={idx} className='animation flex gap-2 '>
                         {icon && icon.map((e, i) => (
                             <div key={i} className=' h-fit w-fit border border-slate-600 rounded-md flex items-center px-5 py-1 gap-5 bg-slate-900' >
-                                <div className='w-10 h-11 flex items-center justify-center '><Image src={e.icon} height={40} width={40} alt={e.text} className='rounded-lg  my-auto drop-shadow-lg' /></div>
+                                <div className='w-10 h-11 flex items-center justify-center '>
+                                    <Image src={e.icon} height={40} width={40} alt={e.text} className='h-auto w-auto rounded-lg  my-auto drop-shadow-lg' />
+                                </div>
                                 <p className='[&&]:text-lg whitespace-nowrap' >{e.text}</p>
-                               
+
                             </div>
                         ))}
                     </div>

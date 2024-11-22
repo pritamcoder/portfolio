@@ -13,7 +13,7 @@ const Tep = (props: Props) => {
                     <div key={idx} className='tepanimation flex gap-5'>
                         {data.map((e,i)=>(
                             <div key={i} className='flex gap-5 ml-5'>
-                                <Image src={'/svg/star.svg'} alt='star' height={20} width={20}/>
+                                <Image src={'/svg/star.svg'} alt='star' height={20} width={20} className='h-auto w-auto'/>
                                 <p className='text-lg font-semibold uppercase text-black'>{e}</p>
                                 
                             </div>
