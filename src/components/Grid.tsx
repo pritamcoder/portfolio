@@ -1,15 +1,17 @@
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import "@/style/grid.css"
 import { Canvas } from '@react-three/fiber'
 import { Float, OrbitControls } from '@react-three/drei'
-import Ghost from './Ghost'
 import Toolbox from './Toolbox'
 import Image from 'next/image'
 import Byondcode from './Byondcode'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
+import dynamic from 'next/dynamic'
 gsap.registerPlugin(ScrollTrigger, useGSAP)
+
+const Ghost = dynamic(() => import('./Ghost'), { ssr: false })
 
 type Props = {}
 
@@ -34,10 +36,9 @@ const Grid = (props: Props) => {
 
     useGSAP(() => {
         const grid = gsap.timeline({
-            delay: .3,
+            delay: .1,
             scrollTrigger: {
                 trigger: '.gridmaincontaner',
-
                 start: 'top 70%',
 
             }
@@ -84,19 +85,21 @@ const Grid = (props: Props) => {
 
                 <div className='nomi flex border-none gap-2 [&&]:p-0 [&&]:bg-transparent'>
                     <div className='w-1/2 [&&]:p-0 h-[150px] md:h-full'>
-                        
-                            <Canvas>
+
+                        <Canvas frameloop='demand'>
                             <ambientLight color={0x404040} intensity={100} />
                             <OrbitControls enableZoom={false} />
-                            <Float speed={2} rotationIntensity={2} floatIntensity={2}>
+                            <Suspense fallback={null}>
+
                                 <Ghost />
-                            </Float>
+
+                            </Suspense>
                         </Canvas>
-                        
+
                     </div>
-                    <div className='w-1/2 [&&]:p-4 h-[150px] md:h-full'>
-                        <Image src={'/image/feature-ele2.png'} height={100} width={100} alt='responsivimage' className='h-auto w-auto ' />
-                        <p className='[&&]:text-lg'>responsiv designe</p>
+                    <div className='w-1/2 [&&]:p-2 h-[150px] md:h-full '>
+                        <Image src={'/image/feature-ele2.png'} height={100} width={100} alt='responsivimage' className=' m-auto' />
+                        <p className='[&&]:text-[medium]'>responsiv designe</p>
                     </div>
                 </div>
 

@@ -2,7 +2,7 @@
 .loader {
     --duration: 3s;
     --primary: rgb(255, 91, 78);
-    --primary-light: #ff5b4e;
+    --primary-light: #ff5044;
     --primary-rgba: rgba(39, 94, 254, 0);
     width: 200px;
     height: 320px;

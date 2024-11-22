@@ -1,10 +1,12 @@
-import { Loader, Sparkles } from '@react-three/drei'
+import { Sparkles } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import React, { Suspense, useRef, useState } from 'react'
-import Showrobot from './Showrobot'
-import Land from './Land'
+import React, { Suspense, useEffect, useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import dynamic from 'next/dynamic'
+
+
+const Showrobot = dynamic(() => import('./Showrobot'), { ssr: false })
 
 gsap.registerPlugin(useGSAP)
 
@@ -13,19 +15,33 @@ type Props = {
 }
 
 const Hero = (props: Props) => {
-
   const [loading, setloading] = useState(true)
   const firstdiv = useRef<HTMLDivElement>(null)
   const maincontainer = useRef<HTMLDivElement>(null)
+  const [ismobile, setismobile] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery=window.matchMedia("(max-width:500px)")
+    setismobile(mediaQuery.matches)
+
+    const handlemediaQuerychange=(event:any)=>{
+      setismobile(event.matches)
+    }
+    mediaQuery.addEventListener('change',handlemediaQuerychange);
+  
+    return () => {
+      mediaQuery.removeEventListener('change',handlemediaQuerychange)
+    }
+  }, [])
 
   useGSAP(() => {
     const anime = gsap.timeline({
       delay: 1
 
     })
-    anime.from(maincontainer.current,{
-      scale:.8,
-      opacity:0
+    anime.from(maincontainer.current, {
+      scale: .8,
+      opacity: 0
     })
     anime.from('.navul', {
       y: -30,
@@ -72,17 +88,22 @@ const Hero = (props: Props) => {
         </div>
       </div>
 
-      <div className='canvasmodel h-full w-full'>     
-        <Canvas camera={{ position: [0, 1, 5], fov: 45 }} shadows>
-          <color attach={'background'} args={['#05071c']} />
-          <fog attach={'fog'} args={['#05071c', 15, 25]} />
-          <group position-y={-1.2}>
-            <Suspense fallback={null}>
-              <Sparkles size={2} color={'lime'} />
-              <Showrobot position={props.mouseposition} />
-            </Suspense>
-          </group>
+      <div className='canvasmodel h-screen w-screen'>
+
+        <Canvas camera={{ position: [0, 1, 5], fov: 45 }} frameloop='demand' dpr={[1,2]} gl={{preserveDrawingBuffer:true}}>
+   
+          <Suspense fallback={null}>
+            <color attach={'background'} args={['#05071c']} />
+            <fog attach={'fog'} args={['#05071c', 15, 25]} />
+            <group position-y={-1.2}>
+
+              <Sparkles size={2} color={'orange'} />
+              <Showrobot position={props.mouseposition} ismobile={ismobile}/>
+
+            </group>
+          </Suspense>
         </Canvas>
+
       </div>
 
 

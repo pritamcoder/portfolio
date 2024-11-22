@@ -1,9 +1,13 @@
-import { Float, Loader, OrbitControls, Point, PointMaterial, Points, Preload } from '@react-three/drei'
+import { Float, OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import React, { Suspense } from 'react'
-import Musroom from './Musroom'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import dynamic from 'next/dynamic'
+import { Perf } from 'r3f-perf'
+
+const Musroom = dynamic(() => import('./Musroom'), { ssr: false })
+
 type Props = {}
 
 const Contact = (props: Props) => {
@@ -44,7 +48,7 @@ const Contact = (props: Props) => {
                 <h1 className='contacth md:text-5xl font-extrabold'>let's work together</h1>
             </div>
 
-            <div className='h-[85%] flex flex-col-reverse max-md:justify-center  md:flex-row' >
+            <div className='h-[85%] flex flex-col-reverse max-md:items-center max-md:gap-5   md:flex-row' >
 
                 <div className='contactform flex items-center justify-center  md:w-2/4 w-full px-3'>
                     <form className='flex flex-col gap-5 bg-slate-950 py-10 lg:px-10 px-5 rounded-lg w-96'>
@@ -57,21 +61,23 @@ const Contact = (props: Props) => {
                         <button className=' h-9 w-fit px-7 border border-slate-100 bg-slate-400 text-black font-bold rounded-md capitalize hover:scale-95'>send</button>
                     </form>
                 </div>
-                <div className='contactcnvs w-[90%] md:w-1/2 h-full max-md:h-[80vh]'>
+                <div className='contactcnvs w-[90%] md:w-1/2 h-full max-md:h-[80vh] '>
 
 
 
-                    <Canvas camera={{ position: [0, 1, 10] }}>
+                    <Canvas camera={{ position: [0, 2, 10] }} frameloop='demand' className='w-full h-full' dpr={[1,2]} gl={{preserveDrawingBuffer:true}}>
+                        <ambientLight intensity={2} />
+                        <Suspense fallback={null}>
+                            <OrbitControls maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 2} enableZoom={false} />
 
+                            <Float>
+                                <Musroom />
+                            </Float>
 
-                        <directionalLight position={[3, 3, 5]} intensity={6} />
-                        <directionalLight position={[-3, 3, -5]} intensity={8} />
+                        </Suspense>
 
-                        <directionalLight position={[5, 5, 5]} intensity={2.2} castShadow shadow-mapSize-width={2048} shadow-mapSize-height={2048} shadow-camera-far={50} />
-                        <OrbitControls maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 2} enableZoom={false} />
-                        <Musroom />
                     </Canvas>
-                    <Loader />
+
 
 
 
