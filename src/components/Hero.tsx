@@ -79,7 +79,7 @@ const Hero = (props: Props) => {
         </div>
       </div>
 
-      <div className='h-full w-full flex items-center justify-center bg-amber-400'>
+      <div className='h-full w-full flex items-center justify-center '>
         <Canvas  camera={{ position: [0, 1, 5], fov: 45 }}  dpr={[1, 2]} gl={{ preserveDrawingBuffer: true }}>
           <color attach={'background'} args={['#05071c']} />
           <fog attach={'fog'} args={['#05071c', 15, 25]} />
