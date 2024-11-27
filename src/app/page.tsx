@@ -62,8 +62,9 @@ const Page = () => {
         <Featurproject />
         <Grid />
         <Tep />
-        <Footer />
         <Contact/>
+        <Footer />
+        
 
 
       </>

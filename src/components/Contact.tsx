@@ -1,6 +1,6 @@
 import { Float, OrbitControls, Sparkles } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import dynamic from 'next/dynamic'
@@ -11,6 +11,22 @@ const Musroom = dynamic(() => import('./Musroom'), { ssr: false })
 type Props = {}
 
 const Contact = (props: Props) => {
+    const [ismobile, setismobile] = useState(false)
+
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia("(max-width:500px)")
+        setismobile(mediaQuery.matches)
+    
+        const handlemediaQuerychange = (event: any) => {
+          setismobile(event.matches)
+        }
+        mediaQuery.addEventListener('change', handlemediaQuerychange);
+    
+        return () => {
+          mediaQuery.removeEventListener('change', handlemediaQuerychange)
+        }
+      }, [])
 
 
     useGSAP(() => {
@@ -65,12 +81,12 @@ const Contact = (props: Props) => {
 
 
 
-                    <Canvas camera={{ position: [0, 1, 10] }} frameloop='demand' className='w-full h-full' dpr={[1,2]} gl={{preserveDrawingBuffer:true}}>
+                    <Canvas camera={{ position: [0, 2, 6], fov: 45 }} frameloop='demand' className='w-full h-full' dpr={[1,2]} gl={{preserveDrawingBuffer:true}}>
                         <ambientLight intensity={2} />
                         <Suspense fallback={null}>
-                            <OrbitControls maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 2} enableZoom={false} />
+                        <OrbitControls maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 3} enableZoom={false} enablePan={false}/>
         
-                                <Musroom />
+                                <Musroom ismobile={ismobile}/>
                                 <Sparkles size={1.6} color={'pink'}/>
                          
                         </Suspense>

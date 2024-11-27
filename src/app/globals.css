@@ -145,3 +145,8 @@ form input {
     content: "";
     @apply absolute right-0 top-2/4 -translate-y-2/4 h-[150%] w-10 bg-gradient-to-l from-[#FF5B4E] to-transparent
 }
+
+
+.contactcnvs>div{
+    @apply [&&]:overflow-visible
+}
