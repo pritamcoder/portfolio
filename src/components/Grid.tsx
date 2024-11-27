@@ -40,10 +40,9 @@ const Grid = (props: Props) => {
             scrollTrigger: {
                 trigger: '.gridmaincontaner',
                 start: 'top 70%',
-
             }
         })
-
+        
         grid.from('.aboutp', {
             opacity: .001,
         })

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import { Projectdata } from '@/data/Projectdata'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
@@ -13,25 +13,21 @@ const Featurproject = (props: Props) => {
 
 
 
-useGSAP(()=>{
-    const grid = gsap.timeline({
-        delay: .3,
-        scrollTrigger: {
-            trigger: '.projectpage',
-            start: 'top 70%',
-        }
-    })
-
-    grid.from('.projectp', {
-        opacity: 0,
-    })
-    grid.from('.projecth', {
-        y: 23,
-        opacity: 0
-    })
-})
-
-    useEffect(() => {
+    useGSAP(() => {
+        const grid = gsap.timeline({
+            delay: .3,
+            scrollTrigger: {
+                trigger: '.projectpage',
+                start: 'top 70%',
+            }
+        })
+        grid.from('.projectp', {
+            opacity: 0,
+        })
+        grid.from('.projecth', {
+            y: 23,
+            opacity: 0
+        })
         gsap.utils.toArray('.projectcart').forEach((e: HTMLDivElement | any) => {
             gsap.to(e, {
                 scale: .9,
@@ -44,8 +40,9 @@ useGSAP(()=>{
                 }
             })
         })
+    })
 
-    }, [])
+
 
 
     return (

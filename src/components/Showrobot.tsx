@@ -46,19 +46,21 @@ const Showrobot = (props: Props) => {
   //castShadow shadow-mapSize-width={2048} shadow-mapSize-height={2048}
   return (
     <>
-      <mesh receiveShadow rotation-x={-Math.PI / 2} position-y={-.31}>
-        <planeGeometry args={[100, 100]} />
-        <meshStandardMaterial color={'#333'} roughness={0.85} />
-      </mesh>
+      <group position-y={-1.2}>
+        <mesh receiveShadow rotation-x={-Math.PI / 2} position-y={-.31}>
+          <planeGeometry args={[100, 100]} />
+          <meshStandardMaterial color={'#333'} roughness={0.85} />
+        </mesh>
 
-      <mesh >
-        {/* key light */}
-        <directionalLight position={[5, 5, 5]} intensity={2.2} shadow-camera-far={50} />
-        <directionalLight position={[3, 3, 5]} intensity={8} color={'#f23c3c'} />
-        <directionalLight position={[-3, 3, -5]} intensity={8} color={'#3cb1f2'} />
+        <mesh >
+          {/* key light */}
+          <directionalLight position={[5, 5, 5]} intensity={2.2} shadow-camera-far={50} />
+          <directionalLight position={[3, 3, 5]} intensity={8} color={'#f23c3c'} />
+          <directionalLight position={[-3, 3, -5]} intensity={8} color={'#3cb1f2'} />
 
-        <primitive object={robot.scene} scale={props.ismobile?.57:.8} position={props.ismobile&&[0,-.21,0]}/>
-      </mesh>
+          <primitive object={robot.scene} scale={props.ismobile ? .57 : .8} position={props.ismobile && [0, -.21, 0]} />
+        </mesh>
+      </group>
     </>
 
 

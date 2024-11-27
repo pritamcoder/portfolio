@@ -3,7 +3,7 @@ import '@/style/loading.css'
 
 export default function Loader() {
     return (
-        <div className='h-screen w-screen flex items-center justify-center'>
+        <div className='h-screen w-screen flex items-center justify-center bg-slate-950'>
 
             <div className="loader">
                 <div className="box box0">

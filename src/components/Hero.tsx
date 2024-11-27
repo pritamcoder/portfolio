@@ -19,63 +19,54 @@ const Hero = (props: Props) => {
   const firstdiv = useRef<HTMLDivElement>(null)
   const maincontainer = useRef<HTMLDivElement>(null)
   const [ismobile, setismobile] = useState(false)
+  const timeline = gsap.timeline({ delay: 1 })
+
 
   useEffect(() => {
-    const mediaQuery=window.matchMedia("(max-width:500px)")
+    const mediaQuery = window.matchMedia("(max-width:500px)")
     setismobile(mediaQuery.matches)
 
-    const handlemediaQuerychange=(event:any)=>{
+    const handlemediaQuerychange = (event: any) => {
       setismobile(event.matches)
     }
-    mediaQuery.addEventListener('change',handlemediaQuerychange);
-  
+    mediaQuery.addEventListener('change', handlemediaQuerychange);
+
     return () => {
-      mediaQuery.removeEventListener('change',handlemediaQuerychange)
+      mediaQuery.removeEventListener('change', handlemediaQuerychange)
     }
   }, [])
 
-  useGSAP(() => {
-    const anime = gsap.timeline({
-      delay: 1
 
-    })
-    anime.from(maincontainer.current, {
-      scale: .8,
-      opacity: 0
-    })
-    anime.from('.navul', {
+  useGSAP(() => {
+    timeline.from('.navul', {
       y: -30,
       opacity: 0,
       duration: 1
     })
-    anime.from(firstdiv.current, {
+    timeline.from(firstdiv.current, {
       x: -10,
       opacity: 0,
       ease: 'bounce.out',
       duration: 1
 
     })
-    anime.from('.fasth1', {
+    timeline.from('.fasth1', {
       y: 3,
       opacity: 0,
     })
-    anime.from('.lastdiv', {
+    timeline.from('.lastdiv', {
       x: 10,
       opacity: 0,
       ease: 'bounce.out',
       duration: 1
 
     })
-    anime.from('.canvasmodel', {
+    timeline.from('.telingscroll', {
       opacity: 0,
-    })
-
-    anime.eventCallback('onComplete', () => {
-      setloading(false)
+      y: 50
     })
 
   })
-
 
   return (
     <div ref={maincontainer} className='herosection h-full w-full relative flex overflow-hidden' id='home'>
@@ -88,21 +79,19 @@ const Hero = (props: Props) => {
         </div>
       </div>
 
-      <div className='canvasmodel h-screen w-screen'>
+      <div className='h-full w-full flex items-center justify-center bg-amber-400'>
+        <Canvas  camera={{ position: [0, 1, 5], fov: 45 }} frameloop='demand' dpr={[1, 2]} gl={{ preserveDrawingBuffer: true }}>
+          <color attach={'background'} args={['#05071c']} />
+          <fog attach={'fog'} args={['#05071c', 15, 25]} />
 
-        <Canvas camera={{ position: [0, 1, 5], fov: 45 }} frameloop='demand' dpr={[1,2]} gl={{preserveDrawingBuffer:true}}>
-   
+
           <Suspense fallback={null}>
-            <color attach={'background'} args={['#05071c']} />
-            <fog attach={'fog'} args={['#05071c', 15, 25]} />
-            <group position-y={-1.2}>
-
-              <Sparkles size={2} color={'orange'} />
-              <Showrobot position={props.mouseposition} ismobile={ismobile}/>
-
-            </group>
+            <Showrobot  position={props.mouseposition} ismobile={ismobile}/>
+            <Sparkles size={1.5} color={'pink'}/>
           </Suspense>
         </Canvas>
+
+
 
       </div>
 
