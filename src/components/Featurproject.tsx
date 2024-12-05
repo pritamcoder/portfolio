@@ -17,8 +17,11 @@ const Featurproject = (props: Props) => {
         const grid = gsap.timeline({
             delay: .3,
             scrollTrigger: {
-                trigger: '.projectpage',
+                trigger: '.projectcontener',
                 start: 'top 70%',
+                end: "top 30%",
+                toggleActions: "play none none reverse"
+
             }
         })
         grid.from('.projectp', {
@@ -28,6 +31,9 @@ const Featurproject = (props: Props) => {
             y: 23,
             opacity: 0
         })
+
+    })
+    useGSAP(() => {
         gsap.utils.toArray('.projectcart').forEach((e: HTMLDivElement | any) => {
             gsap.to(e, {
                 scale: .9,
@@ -35,11 +41,19 @@ const Featurproject = (props: Props) => {
                 scrollTrigger: {
                     trigger: e,
                     start: "top 10%",
-                    end: "bottom 15%",
+                    end: `bottom 40%`,
                     scrub: true,
+                  
                 }
             })
         })
+
+        const handelResize = () => ScrollTrigger.refresh();
+        window.addEventListener("resize", handelResize)
+        return () => {
+            window.addEventListener('resize', handelResize)
+            ScrollTrigger.refresh()
+        }
     })
 
 
@@ -47,29 +61,30 @@ const Featurproject = (props: Props) => {
 
     return (
         <div className='projectpage' id='project'>
-            <div className='projectcontener flex items-center flex-col py-10 gap-3'>
-                <p className='gradientforp projectp uppercase font-bold  text-transparent bg-clip-text '>real - worls results</p>
+            <div className='projectcontener flex items-center flex-col py-10 gap-2'>
+                <p className='gradientforp projectp uppercase font-bold  text-transparent bg-clip-text text-sm '>real - worls results</p>
                 <h1 className='fh md:text-5xl projecth  font-extrabold'>featre projects</h1>
             </div>
-            <div className='flex flex-col items-center  justify-around p-5 pt-0'>
+            <div className='flex flex-col items-center  justify-around p-5 pt-0 gap-20'>
                 {Projectdata && Projectdata.map((data, index) => (
-                    <div ref={projectcart} key={index} className="projectcart sticky top-1 max-w-7xl md:min-h-[450px] px-8 md:px-20 pt-6 pb-10 md:py-0 flex flex-col-reverse md:flex-row gap-10 items-center border-2 border-slate-700 rounded-lg bg-slate-950 mb-20">
+                    <div ref={projectcart} key={index} className="projectcart h-fit md:min-h-[450px] max-w-7xl  sticky top-1  flex flex-col-reverse gap-10 justify-center items-center md:flex-row px-8 md:px-20 py-4  bg-slate-950 rounded-lg overflow-hidden">
+
                         <div className='md:w-2/4 w-full'>
-                            <p className="gradientforp uppercase font-bold text-transparent bg-clip-text text-sm  mb-2 w-fit">Acme Corp • 2022</p>
-                            <h1 className="text-3xl md:text-4xl font-bold mb-4 ">{data.tittle}</h1>
+                            <p className='gradientforp uppercase font-bold text-transparent bg-clip-text mb-2 w-fit text-xs'>Acme Corp • 2022</p>
+                            <h1 className="text-2xl md:text-3xl font-bold mb-4 ">{data.tittle}</h1>
                             <hr className='gridentborder' />
-                            <p className='my-5 text-gray-400/55'>{data.description}</p>
+                            <p className='my-5 text-gray-400/55 text-sm font-normal'>{data.description}</p>
                             <div className='mt-5'>
-                                <p className=' uppercase font-bold w-fit'>used tecnology</p>
-                                <div className='flex gap-5 mt-2'>
+                                <p className=' uppercase font-bold w-fit text-sm tracking-wider'>used tecnology</p>
+                                <div className='flex gap-5 mt-2 items-center'>
                                     {data.icons.length > 1 ? (
                                         data.icons.map((e, i) => (
                                             <div key={i}>
-                                                <Image src={e} alt={e} height={25} width={25} className='w-auto h-auto' />
+                                                <Image src={e} alt={e} height={25} width={25} className=' aspect-square' />
 
                                             </div>
                                         ))
-                                    ) : <p className='text-gray-500'>not add tools icon</p>}
+                                    ) : <p className='text-gray-500 text-xs'>not add tools icon</p>}
                                 </div>
                             </div>
                             <a
@@ -86,7 +101,7 @@ const Featurproject = (props: Props) => {
                                 alt="SaaS Landing Page Mockup"
                                 width={1000}
                                 height={600}
-                                className="relative rounded-lg shadow-lg h-auto w-auto"
+                                className="relative rounded-lg shadow-lg aspect-video md:aspect-auto"
                             />
 
                         </div>

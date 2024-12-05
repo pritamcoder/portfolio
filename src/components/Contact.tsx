@@ -17,50 +17,59 @@ const Contact = (props: Props) => {
     useEffect(() => {
         const mediaQuery = window.matchMedia("(max-width:500px)")
         setismobile(mediaQuery.matches)
-    
+
         const handlemediaQuerychange = (event: any) => {
-          setismobile(event.matches)
+            setismobile(event.matches)
         }
         mediaQuery.addEventListener('change', handlemediaQuerychange);
-    
+
         return () => {
-          mediaQuery.removeEventListener('change', handlemediaQuerychange)
+            mediaQuery.removeEventListener('change', handlemediaQuerychange)
         }
-      }, [])
+    }, [])
 
 
     useGSAP(() => {
-        const grid = gsap.timeline({
+
+        const desktoptimeline = gsap.timeline({
             delay: .3,
             scrollTrigger: {
                 trigger: '.contactdiv',
                 start: 'top 70%',
+                end: 'top 30%',
+                //markers: true,
+                toggleActions: "play none none reverse"
 
             }
         })
 
-        grid.from('.contactp', {
-            opacity: .001,
+        desktoptimeline.from('.contactp', {
+            opacity: 0,
         })
-        grid.from('.contacth', {
-            y: 23,
+        .from('.contacth', {
+            y: 43,
             opacity: 0
         })
-        grid.from('.contactform', {
-            x: -40,
-            opacity: 0
+        .from('.contactform', {
+            x: -140,
+            opacity: 0,
+            duration: 1.5
         })
-        grid.from('.contactcnvs', {
+        .from('.contactcnvs', {
             x: 40,
             opacity: 0
         })
+        
+
+
 
     })
 
+
     return (
         <div className='contactdiv md:h-screen h-fit pb-5 overflow-hidden' id='contact'>
-            <div className='h-[15%] flex flex-col justify-center items-center gap-3 py-5'>
-                <p className='contactp gradientforp uppercase font-bold text-transparent bg-clip-text '>Contact me</p>
+            <div className='contextdiv h-[15%] flex flex-col justify-center items-center gap-2 py-5'>
+                <p className='contactp gradientforp uppercase font-bold text-transparent bg-clip-text text-sm '>Contact me</p>
                 <h1 className='contacth md:text-5xl font-extrabold'>let's work together</h1>
             </div>
 
@@ -74,13 +83,13 @@ const Contact = (props: Props) => {
                         <input type="email" name="" id="email" placeholder='email' required />
                         <label htmlFor="comment"> comment </label>
                         <textarea name="" id="comment" className='w-full h-40 rounded-md px-2 bg-slate-900 transition-all' placeholder='comment' required />
-                        <button className=' h-9 w-fit px-7 border border-slate-100 bg-slate-400 text-black font-bold rounded-md capitalize hover:scale-95'>send</button>
+                        <button className=' h-9 w-fit px-7 border border-slate-200 bg-slate-400 text-[#1b1b1b] font-semibold tracking-wider rounded-md capitalize hover:scale-95'>send</button>
                     </form>
                 </div>
                 <div className='contactcnvs w-[90%] md:w-1/2 h-full max-md:h-[80vh] '>
 
 
-
+                 
                     <Canvas camera={{ position: [0, 2, 6], fov: 45 }} frameloop='demand' className='w-full h-full' dpr={[1,2]} gl={{preserveDrawingBuffer:true}}>
                         <ambientLight intensity={2} />
                         <Suspense fallback={null}>
@@ -92,8 +101,7 @@ const Contact = (props: Props) => {
                         </Suspense>
 
                     </Canvas>
-
-
+                    
 
 
 

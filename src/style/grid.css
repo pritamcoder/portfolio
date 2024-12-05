@@ -7,11 +7,11 @@
 }
 
 h1 {
-    @apply text-2xl md:text-4xl font-bold font-serif text-white
+    @apply text-2xl md:text-4xl font-bold font-zenDots text-white
 }
 
 .nomi p {
-    @apply text-white font-bold text-lg lg:text-2xl
+    @apply text-white font-bold text-base lg:text-xl
 }
 
 .div3>div {
@@ -23,10 +23,11 @@ h1 {
 }
 
 .copyemail{
-    background-image: linear-gradient(45deg,#f17c58,#e94584,#24aadb,#27dbb1,#ffdc18);
+    background-image: linear-gradient(45deg,#f17c58,#e94584,#4f27ff,#7520ff,#b618ff);
     background-size: 600% 100%;
     animation: gradient 10s linear infinite;
     animation-direction: alternate;
+    
 }
 
 @keyframes gradient{

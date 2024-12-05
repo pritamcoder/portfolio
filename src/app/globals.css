@@ -2,9 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@font-face {
+    font-family:'ZenDots';
+    src: url('../style/fonts/ZenDots-Regular.ttf') format('truetype');
+    
+}
+@font-face {
+    font-family:'zentry';
+    src: url('../style/fonts/circularweb-book.woff2') format('truetype');
+    font-weight: normal;
+    font-size: normal;
+}
+
+
+
 * {
 
-    @apply m-0 p-0 capitalize box-border text-white
+    @apply m-0 p-0 capitalize box-border text-white font-zenDots
 }
 
 html {
@@ -31,7 +46,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 li a {
-    @apply font-semibold py-1 px-2 rounded-xl transition-all
+    @apply font-semibold py-1 px-2 rounded-xl transition-all text-sm md:text-base
 }
 
 li a:hover {
@@ -39,7 +54,7 @@ li a:hover {
 }
 
 h1 {
-    @apply text-2xl md:text-4xl font-bold font-serif text-white
+    @apply text-2xl md:text-4xl font-bold  text-white
 }
 
 .retrogrid>div {
@@ -112,6 +127,8 @@ form input {
 
 .gradientforp {
     background-image: linear-gradient(109.7deg, white 0%, #FF5B4E 90%);
+    
+    
 }
 
 .gridentborder {

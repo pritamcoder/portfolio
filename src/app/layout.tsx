@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { SpeedInsights } from "@vercel/speed-insights/next";
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +17,6 @@ export default function RootLayout({
     <html lang="en">
       <body suppressHydrationWarning={true}>
         {children}
-        <SpeedInsights/>
         </body>
     </html>
   );

@@ -30,4 +30,152 @@
         </Canvas>
         <Loader />
 
-       go
+       
+
+
+
+
+
+
+
+       <div className='flex flex-col items-center  justify-around p-5 pt-0'>
+                {Projectdata && Projectdata.map((data, index) => (
+                    <div ref={projectcart} key={index} className="projectcart sticky top-1 max-w-7xl md:min-h-[450px] px-8 md:px-20 pt-6 pb-10 md:py-0 flex flex-col-reverse md:flex-row gap-10 items-center border-2 border-slate-700 rounded-lg bg-slate-950 mb-20">
+                        <div className='md:w-2/4 w-full'>
+                            <p className="gradientforp uppercase font-bold text-transparent bg-clip-text mb-2 w-fit text-xs">Acme Corp • 2022</p>
+                            <h1 className="text-2xl md:text-3xl font-bold mb-4 ">{data.tittle}</h1>
+                            <hr className='gridentborder' />
+                            <p className='my-5 text-gray-400/55 text-sm font-normal'>{data.description}</p>
+                            <div className='mt-5'>
+                                <p className=' uppercase font-bold w-fit text-sm tracking-wider'>used tecnology</p>
+                                <div className='flex gap-5 mt-2'>
+                                    {data.icons.length > 1 ? (
+                                        data.icons.map((e, i) => (
+                                            <div key={i}>
+                                                <Image src={e} alt={e} height={25} width={25} className='w-auto h-auto' />
+
+                                            </div>
+                                        ))
+                                    ) : <p className='text-gray-500 text-xs'>not add tools icon</p>}
+                                </div>
+                            </div>
+                            <a
+                                href={data.siturl}
+                                className="mt-5 inline-block bg-white text-gray-900 px-6 py-2 rounded-lg shadow-lg hover:bg-gray-200 transition duration-300 font-semibold text-lg hover:scale-95">
+                                Visit Live Site <i className='bi bi-arrow-right text-gray-900'></i>
+                            </a>
+                        </div>
+                        <div className="relative md:w-2/4">
+                            <div style={{ background: `linear-gradient(to right, ${data.gradient[0]}, ${data.gradient[1]})` }} className={`absolute md:block hidden inset-0 rounded-lg shadow-lg -rotate-6 transform translate-x-6 blur-[1px]`}></div>
+
+                            <Image
+                                src={data.image}
+                                alt="SaaS Landing Page Mockup"
+                                width={1000}
+                                height={600}
+                                className="relative rounded-lg shadow-lg h-auto w-auto"
+                            />
+
+                        </div>
+                    </div>
+                ))}
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            ///constact
+
+
+
+
+
+
+             useGSAP(() => {
+
+        const mediaQuery = window.matchMedia('(min-width:768px)')
+
+        const desktoptimeline = gsap.timeline({
+            delay: .3,
+            scrollTrigger: {
+                trigger: '.contactdiv',
+                start: 'top 70%',
+                end: 'top 30%',
+                markers: true,
+                toggleActions: "play none none reverse"
+
+            }
+        })
+
+        desktoptimeline.from('.contactp', {
+            opacity: 0,
+        })
+            .from('.contacth', {
+                y: 43,
+                opacity: 0
+            })
+            .from('.contactform', {
+                x: -140,
+                opacity: 0,
+                duration: 1.5
+            })
+            .from('.contactcnvs', {
+                x: 40,
+                opacity: 0
+            })
+
+        const mobiletimeline = ScrollTrigger.create({
+            trigger: ".contextdiv",
+            start: "top 80%",
+            end: "bottom 20%",
+            markers: true,
+            onEnter: () => {
+                gsap.from("contactp", {
+                    opacity: 0
+                })
+                gsap.from(".contacth", {
+                    y: 43,
+                    opacity: 0,
+                })
+                gsap.from(".contactform", {
+                    x: -140,
+                    opacity: 0,
+                    duration: .5
+                })
+                gsap.from(".contactcnvs", {
+                    x: 40,
+                    opacity: 0,
+                    duration: .5
+                })
+            }
+        })
+
+        if (mediaQuery.matches) {
+            desktoptimeline.play()
+            mobiletimeline.kill()
+        }
+        else {
+            mobiletimeline.refresh()
+            desktoptimeline.kill()
+        }
+        return () => {
+            desktoptimeline.kill()
+            mobiletimeline.kill()
+        }
+
+
+    })

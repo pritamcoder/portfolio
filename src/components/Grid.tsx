@@ -39,7 +39,11 @@ const Grid = (props: Props) => {
             delay: .1,
             scrollTrigger: {
                 trigger: '.gridmaincontaner',
-                start: 'top 70%',
+                start:'top 70%',
+                end:'bottom 30%',
+                toggleActions: "play none none reverse",
+                //markers:true
+      
             }
         })
         
@@ -59,8 +63,8 @@ const Grid = (props: Props) => {
 
     return (
         <div className='gridmaincontaner md:h-screen overflow-hidden' id='about'>
-            <div className='h-[15%] flex flex-col justify-center items-center gap-3 py-5'>
-                <p className='aboutp  uppercase font-bold bg-gradient-to-tr from-[#FFFFFF] to-[#FF5B4E] text-transparent bg-clip-text '>about me</p>
+            <div className='h-[15%] flex flex-col justify-center items-center gap-2 py-5'>
+                <p className='aboutp  gradientforp  uppercase font-bold  text-transparent bg-clip-text text-sm '>about me</p>
                 <h1 className='abouth md:text-5xl font-extrabold'>a glimpse into my world</h1>
             </div>
 
@@ -77,7 +81,7 @@ const Grid = (props: Props) => {
                             <div className='h-4 w-4 rounded-[100%] bg-gradient-to-tr from-[#FFFFFF] to-[#FF5B4E] animate-bounce'></div>
                             <h1>my tool box</h1>
                         </span>
-                        <p className='[&&]:lg:text-lg [&&]:text-sm [&&]:text-white/50 [&&]:font-medium pb-1'>explore the technologie and tools i  use to  craft<br />  exceptional digital experiences.</p>
+                        <p className='[&&]:lg:text-base [&&]:text-xs [&&]:text-white/50 [&&]:font-medium pb-1'>explore the technologie and tools i  use to  craft<br />  exceptional digital experiences.</p>
                     </div>
                     <Toolbox />
                 </div>
@@ -98,7 +102,7 @@ const Grid = (props: Props) => {
                     </div>
                     <div className='w-1/2 [&&]:p-2 h-[150px] md:h-full '>
                         <Image src={'/image/feature-ele2.png'} height={100} width={100} alt='responsivimage' className=' m-auto' />
-                        <p className='[&&]:text-[medium]'>responsiv designe</p>
+                        <p className='[&&]:text-base'>responsiv designe</p>
                     </div>
                 </div>
 
@@ -109,7 +113,7 @@ const Grid = (props: Props) => {
                             <div className='h-4 w-4 rounded-[100%] bg-gradient-to-tr from-[#FFFFFF] to-[#FF5B4E] animate-bounce'></div>
                             <h1>beyond the code</h1>
                         </span>
-                        <p className='[&&]:lg:text-lg [&&]:text-base [&&]:text-white/50 [&&]:font-medium'>explore my interest and hobbies beyond <br /> the digital realm.</p>
+                        <p className='[&&]:lg:text-base [&&]:text-sm [&&]:text-white/50 [&&]:font-medium'>explore my interest and hobbies beyond <br /> the digital realm.</p>
                     </div>
                     <Byondcode />
                 </div>
@@ -120,7 +124,7 @@ const Grid = (props: Props) => {
                 </div>
 
                 <div className='flex flex-col items-center justify-center copyemail'>
-                    <p>do you went to start a project together?</p>
+                    <p >do you went to start a project together?</p>
                     <button className=' capitalize border border-gray-600 bg-gray-800 text-white mt-4 rounded-lg px-5 py-1 font-semibold transition-all hover:-translate-y-1' onClick={Copyemail}>{copysuccess ? '✔' : <i className="bi bi-copy"></i>} copy my email address</button>
                 </div>
 

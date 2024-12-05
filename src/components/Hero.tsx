@@ -18,8 +18,9 @@ const Hero = (props: Props) => {
   const [loading, setloading] = useState(true)
   const firstdiv = useRef<HTMLDivElement>(null)
   const maincontainer = useRef<HTMLDivElement>(null)
+  const lastdiv = useRef<HTMLDivElement>(null)
   const [ismobile, setismobile] = useState(false)
-  const timeline = gsap.timeline({ delay: 1 })
+
 
 
   useEffect(() => {
@@ -38,6 +39,13 @@ const Hero = (props: Props) => {
 
 
   useGSAP(() => {
+    const timeline = gsap.timeline({
+      delay: 1,
+      onComplete: () => {
+        gsap.set(firstdiv.current, { clearProps: 'all' })
+
+      }
+    })
     timeline.from('.navul', {
       y: -30,
       opacity: 0,
@@ -66,21 +74,51 @@ const Hero = (props: Props) => {
       y: 50
     })
 
+
   })
+
+  const handelMOusemove = (event: React.MouseEvent, classname: React.RefObject<HTMLDivElement>) => {
+
+    if (classname.current) {
+      const { left, top, width, height } = classname.current?.getBoundingClientRect()
+      const x = ((event.clientX - left) / width - .5) * 10
+      const y = ((event.clientY - top) / height - .5) * 10
+
+      gsap.to(classname.current, {
+        rotateX: x,
+        rotateY: y,
+        transformPerspective: 1000,
+        ease: 'power3.out'
+      })
+    }
+  }
+
+  const handelMouseleave = (classname: React.RefObject<HTMLDivElement>) => {
+    if (classname.current) {
+      gsap.to(classname.current, {
+        rotateX: 0,
+        rotateY: 0,
+        ease: "power3.out",
+        duration: .5
+      })
+    }
+  }
 
   return (
     <div ref={maincontainer} className='herosection h-full w-full relative flex overflow-hidden' id='home'>
-      <div ref={firstdiv} className='fastdiv w-[90%] md:w-fit text-center md:text-left absolute z-40 max-md:left-1/2  md:left-20 top-[10%]  max-md:-translate-x-1/2 bg-slate-950 rounded-2xl py-3 px-2 md:px-4 md:py-6 rounded-br-none border border-slate-700 shadow-lg'>
+      <div ref={firstdiv} onMouseMove={(e) => handelMOusemove(e, firstdiv)} onMouseLeave={()=>handelMouseleave(firstdiv)} className='fastdiv w-[90%] md:w-fit text-center md:text-left absolute z-40 max-md:left-1/2  md:left-20 top-[10%]  max-md:-translate-x-1/2 bg-slate-950 rounded-2xl py-3 px-2 md:px-4 md:py-7 rounded-br-none border border-slate-700 shadow-lg'>
         <h1 className='fasth1 text-3xl md:text-4xl'>hi i'm <span className='gradientforp text-transparent bg-clip-text'>pritam.</span></h1>
-        <p className='text-slate-500/80 mt-2 text-sm md:text-base'>i am a freelance web devloper skilled in building <br className=' md:hidden ' /> responsive <br className=' hidden md:block' /> website javaScript,typeScript and modern frameworks like next js.</p>
-        <div className=' flex justify-between mt-3'>
-          <button className='border px-5 py-2 rounded-lg capitalize border-slate-500 hover:scale-105 font-semibold text-sm md:text-base'>explore my work <i className='bi bi-arrow-down'></i></button>
-          <button className='border px-5 py-2 rounded-lg capitalize border-slate-500 hover:scale-105 font-semibold  text-sm md:text-base'>👋 let's contact</button>
+        <p className='text-slate-500/80 mt-2 text-[10px] md:text-sm'>i am a freelance web devloper skilled in building <br className=' md:hidden ' /> responsive <br className=' hidden md:block' /> website javaScript,typeScript and modern frameworks like next js.</p>
+        <div className=' flex justify-between mt-3 max-md:gap-2'>
+          <button className='border tracking-wider px-5 py-2 rounded-lg capitalize border-slate-700 hover:scale-105 font-semibold text-xs md:text-sm'>explore my work <i className='bi bi-arrow-down'></i></button>
+          <button className='border tracking-wider px-5 py-2 rounded-lg capitalize border-slate-700 hover:scale-105 font-semibold  text-xs md:text-sm'>👋 let's contact</button>
         </div>
       </div>
 
       <div className='h-full w-full flex items-center justify-center '>
-        <Canvas  camera={{ position: [0, 1, 5], fov: 45 }}  dpr={[1, 2]} gl={{ preserveDrawingBuffer: true }}>
+
+        
+        <Canvas  camera={{ position: [0, 1, 5], fov: 45 }} frameloop='demand'  dpr={[1, 2]} gl={{ preserveDrawingBuffer: true }}>
           <color attach={'background'} args={['#05071c']} />
           <fog attach={'fog'} args={['#05071c', 15, 25]} />
 
@@ -90,16 +128,16 @@ const Hero = (props: Props) => {
             <Sparkles size={1.5} color={'pink'}/>
           </Suspense>
         </Canvas>
-
+*
 
 
       </div>
 
 
 
-      <div className='lastdiv border border-slate-700 hidden shadow-xl lg:block absolute bottom-[5%] right-10  bg-slate-950 rounded-2xl rounded-tl-none py-6 px-4'>
+      <div ref={lastdiv} onMouseMove={(e)=>handelMOusemove(e,lastdiv)} onMouseLeave={()=>handelMouseleave(lastdiv)} className='lastdiv border border-slate-700 hidden shadow-xl lg:block absolute bottom-[5%] right-10  bg-slate-950 rounded-2xl rounded-tl-none py-6 px-4'>
         <p className='md:text-2xl text-lg font-bold mb-2'>building exceptional user experiences.</p>
-        <p className='text-slate-500/80'>i speciallze in transforming designs into functional,high-performing <br />  web applications let's discuss your next project.</p>
+        <p className='text-slate-500/80 text-sm'>i speciallze in transforming designs into functional,high-performing <br />  web applications let's discuss your next project.</p>
       </div>
     </div>
   )
