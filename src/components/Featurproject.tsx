@@ -67,7 +67,7 @@ const Featurproject = (props: Props) => {
             </div>
             <div className='flex flex-col items-center  justify-around p-5 pt-0 gap-20'>
                 {Projectdata && Projectdata.map((data, index) => (
-                    <div ref={projectcart} key={index} className="projectcart h-fit md:min-h-[450px] max-w-7xl  sticky top-1  flex flex-col-reverse gap-10 justify-center items-center md:flex-row px-8 md:px-20 py-4  bg-slate-950 rounded-lg overflow-hidden">
+                    <div ref={projectcart} key={index} className="projectcart sticky top-1 max-w-7xl md:min-h-[450px] px-8 md:px-20 pt-6 pb-10 md:py-0 flex flex-col-reverse md:flex-row gap-10 items-center border-2 border-slate-700 rounded-lg bg-slate-950 ">
 
                         <div className='md:w-2/4 w-full'>
                             <p className='gradientforp uppercase font-bold text-transparent bg-clip-text mb-2 w-fit text-xs'>Acme Corp • 2022</p>

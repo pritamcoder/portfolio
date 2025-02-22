@@ -45,13 +45,13 @@ const Page = () => {
       <>
 
 
-        <div className=' relative h-screen w-scree flex flex-col  justify-center' onMouseMove={(e) => setmouseposition({ x: e.clientX - window.innerWidth / 2, y: e.clientY - window.innerHeight / 2 })}>
+        <div className=' relative h-screen w-scree flex flex-col  justify-center  rounded-b-lg overflow-hidden' onMouseMove={(e) => setmouseposition({ x: e.clientX - window.innerWidth / 2, y: e.clientY - window.innerHeight / 2 })}>
           <Nav />
           <Hero mouseposition={mouseposition} />
           <div className='telingscroll absolute bottom-0 left-0 w-full flex justify-center items-center flex-col-reverse pb-2'>
-            <div className='border border-slate-400 w-8 h-14  rounded-2xl flex justify-center items-center'>
+            <div className='border border-slate-400 w-7 h-14  rounded-2xl flex justify-center items-center'>
               <div className=' animate-bounce'>
-                <i className='bi bi-arrow-down font-bold text-2xl animate-bounce'></i>
+                <i className='bi bi-arrow-down text-xl'></i>
               </div>
             </div>
             <p className=' font-bold text-slate-50'>scroll </p>

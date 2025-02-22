@@ -36,7 +36,7 @@ const Byondcode = (props: Props) => {
 
             {hobbies.map((e, i) => (
                 <div key={i} id={`${i}`} className={`backgrountgradient dragdiv border-2 border-gray-600 rounded-3xl w-fit h-fit  px-5 py-1 `}>
-                    <p className='[&&]:text-lg select-none cursor-grabbing [&&]:text-black'>{e}</p>
+                    <p className='[&&]:text-base select-none cursor-grabbing [&&]:text-black'>{e}</p>
                 </div>
             ))}
         </div>

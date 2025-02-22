@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react'
+import React, { Suspense, useRef, useState } from 'react'
 import "@/style/grid.css"
 import { Canvas } from '@react-three/fiber'
 import { Float, OrbitControls } from '@react-three/drei'
@@ -9,6 +9,8 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
 import dynamic from 'next/dynamic'
+import { handelMOusemove } from './Effect3d'
+import { handelMouseleave } from './Effect3d'
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
 const Ghost = dynamic(() => import('./Ghost'), { ssr: false })
@@ -18,6 +20,8 @@ type Props = {}
 const Grid = (props: Props) => {
     const [copysuccess, setcopysuccess] = useState(false)
     const [copymassege, setcopymassege] = useState("")
+    const tecimag = useRef<HTMLImageElement>(null)
+
 
     const Copyemail = async () => {
         try {
@@ -81,7 +85,7 @@ const Grid = (props: Props) => {
                             <div className='h-4 w-4 rounded-[100%] bg-gradient-to-tr from-[#FFFFFF] to-[#FF5B4E] animate-bounce'></div>
                             <h1>my tool box</h1>
                         </span>
-                        <p className='[&&]:lg:text-base [&&]:text-xs [&&]:text-white/50 [&&]:font-medium pb-1'>explore the technologie and tools i  use to  craft<br />  exceptional digital experiences.</p>
+                        <p className='[&&]:lg:text-base [&&]:text-xs [&&]:text-white/50 [&&]:font-medium pb-1'>explore the technologie and tools i  use to  craft<br className='md:block hidden'/>  exceptional digital experiences.</p>
                     </div>
                     <Toolbox />
                 </div>
@@ -101,7 +105,7 @@ const Grid = (props: Props) => {
 
                     </div>
                     <div className='w-1/2 [&&]:p-2 h-[150px] md:h-full '>
-                        <Image src={'/image/feature-ele2.png'} height={100} width={100} alt='responsivimage' className=' m-auto' />
+                        <Image src={'/image/feature-ele2.png'} height={100} width={100} alt='responsivimage' className='m-auto' />
                         <p className='[&&]:text-base'>responsiv designe</p>
                     </div>
                 </div>
@@ -113,14 +117,14 @@ const Grid = (props: Props) => {
                             <div className='h-4 w-4 rounded-[100%] bg-gradient-to-tr from-[#FFFFFF] to-[#FF5B4E] animate-bounce'></div>
                             <h1>beyond the code</h1>
                         </span>
-                        <p className='[&&]:lg:text-base [&&]:text-sm [&&]:text-white/50 [&&]:font-medium'>explore my interest and hobbies beyond <br /> the digital realm.</p>
+                        <p className='[&&]:lg:text-base [&&]:text-sm [&&]:text-white/50 [&&]:font-medium'>explore my interest and hobbies beyond <br className='md:block hidden'/> the digital realm.</p>
                     </div>
                     <Byondcode />
                 </div>
 
                 <div style={{ backgroundImage: 'url("/svg/grid.svg")' }} className='relative'>
                     <p className='lg:mt-5'>tech enthusiast with a passion  for development.</p>
-                    <Image src={'/svg/b4.svg'} height={100} width={250} alt='layout' className=' w-auto h-auto md:absolute bottom-0 md:right-0 z-20 object-cover object-center relative translate-y-5 mx-auto md:translate-x-0 md:translate-y-0 ' />
+                    <Image ref={tecimag} onMouseMove={(e) => handelMOusemove(e, tecimag)} onMouseLeave={() => handelMouseleave(tecimag)}  src={'/svg/b4.svg'} height={100} width={250} alt='layout' className=' w-auto h-auto md:absolute bottom-0 md:right-0 z-20 object-cover object-center relative translate-y-5 mx-auto md:translate-x-0 md:translate-y-0 ' />
                 </div>
 
                 <div className='flex flex-col items-center justify-center copyemail'>

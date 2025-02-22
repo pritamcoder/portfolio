@@ -1,17 +1,32 @@
 import { Float, OrbitControls, Sparkles } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import dynamic from 'next/dynamic'
+import { handelMouseleave, handelMOusemove } from './Effect3d'
+import axios from 'axios'
+
 
 
 const Musroom = dynamic(() => import('./Musroom'), { ssr: false })
 
 type Props = {}
+interface contactform {
+    name: string,
+    email: string,
+    comment: string
+}
+
 
 const Contact = (props: Props) => {
     const [ismobile, setismobile] = useState(false)
+    const contactform = useRef(null)
+    const [formdata, setformdata] = useState<contactform>({
+        name: "",
+        email: "",
+        comment: ""
+    })
 
 
     useEffect(() => {
@@ -46,24 +61,42 @@ const Contact = (props: Props) => {
         desktoptimeline.from('.contactp', {
             opacity: 0,
         })
-        .from('.contacth', {
-            y: 43,
-            opacity: 0
-        })
-        .from('.contactform', {
-            x: -140,
-            opacity: 0,
-            duration: 1.5
-        })
-        .from('.contactcnvs', {
-            x: 40,
-            opacity: 0
-        })
-        
+            .from('.contacth', {
+                y: 43,
+                opacity: 0
+            })
+            .from('.contactform', {
+                x: -140,
+                opacity: 0,
+                duration: 1.5
+            })
+            .from('.contactcnvs', {
+                x: 40,
+                opacity: 0
+            })
+
 
 
 
     })
+
+    const formhandel = (e:React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        axios.post("./api/sendEmail", formdata).then((e) => {
+            console.log(e)
+        }).catch((e) => { console.log(e) })
+
+
+    }
+    const onchange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setformdata({ ...formdata, [e.target.name]: e.target.value })
+
+
+
+
+
+    }
 
 
     return (
@@ -76,20 +109,20 @@ const Contact = (props: Props) => {
             <div className='h-[85%] flex flex-col-reverse max-md:items-center max-md:gap-5   md:flex-row' >
 
                 <div className='contactform flex items-center justify-center  md:w-2/4 w-full px-3'>
-                    <form className='flex flex-col gap-5 bg-slate-950 py-10 lg:px-10 px-5 rounded-lg w-96'>
+                    <form ref={contactform} onMouseMove={(e) => handelMOusemove(e, contactform)} onMouseLeave={() => handelMouseleave(contactform)} className='flex flex-col gap-5 bg-slate-950 py-10 lg:px-10 px-5 rounded-lg w-96' onSubmit={(e)=>formhandel(e)}>
                         <label htmlFor="name"> name </label>
-                        <input type="text" name="" id="name" placeholder='name' required />
+                        <input type="text" name="name" id="name" placeholder='name' required onChange={(e) => onchange(e)} />
                         <label htmlFor="email"> email </label>
-                        <input type="email" name="" id="email" placeholder='email' required />
+                        <input type="email" name="email" id="email" placeholder='email' required onChange={(e) => onchange(e)} />
                         <label htmlFor="comment"> comment </label>
-                        <textarea name="" id="comment" className='w-full h-40 rounded-md px-2 bg-slate-900 transition-all' placeholder='comment' required />
+                        <textarea name="comment" id="comment" className='w-full h-40 rounded-md px-2 bg-slate-900 transition-all' placeholder='comment' required onChange={(e) => onchange(e)} />
                         <button className=' h-9 w-fit px-7 border border-slate-200 bg-slate-400 text-[#1b1b1b] font-semibold tracking-wider rounded-md capitalize hover:scale-95'>send</button>
                     </form>
                 </div>
                 <div className='contactcnvs w-[90%] md:w-1/2 h-full max-md:h-[80vh] '>
 
 
-                 
+                  
                     <Canvas camera={{ position: [0, 2, 6], fov: 45 }} frameloop='demand' className='w-full h-full' dpr={[1,2]} gl={{preserveDrawingBuffer:true}}>
                         <ambientLight intensity={2} />
                         <Suspense fallback={null}>
@@ -102,6 +135,7 @@ const Contact = (props: Props) => {
 
                     </Canvas>
                     
+                   
 
 
 
