@@ -105,7 +105,7 @@ const Hero = (props: Props) => {
             <Sparkles size={1.5} color={'pink'}/>
           </Suspense>
         </Canvas>
-       
+
 
 
       </div>
