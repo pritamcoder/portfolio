@@ -70,7 +70,7 @@ const Featurproject = (props: Props) => {
                     <div ref={projectcart} key={index} className="projectcart sticky top-1 max-w-7xl md:min-h-[450px] px-8 md:px-20 pt-6 pb-10 md:py-0 flex flex-col-reverse md:flex-row gap-10 items-center border-2 border-slate-700 rounded-lg bg-slate-950 ">
 
                         <div className='md:w-2/4 w-full'>
-                            <p className='gradientforp uppercase font-bold text-transparent bg-clip-text mb-2 w-fit text-xs'>Acme Corp • 2022</p>
+                            <p className='gradientforp uppercase font-bold text-transparent bg-clip-text mb-2 w-fit text-xs'>Acme Corp • 2023</p>
                             <h1 className="text-2xl md:text-3xl font-bold mb-4 ">{data.tittle}</h1>
                             <hr className='gridentborder' />
                             <p className='my-5 text-gray-400/55 text-sm font-normal'>{data.description}</p>
